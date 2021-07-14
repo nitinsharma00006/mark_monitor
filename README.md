@@ -1,0 +1,2 @@
+# Mark Monitor
+Mark Monitor is tool which store data which is send by IOT Device which is installed at client side in signboards. Mark Monitor tool build in CodeIgniter 4. In this project we registed our customer to collect the information about the customer. And register IOT Device in our system and mapped with customer. we will notify customer on the performance of IOT device are working or not by the notification send on their email and sms.
