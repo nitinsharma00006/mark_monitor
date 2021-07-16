@@ -5,10 +5,9 @@ use App\Models\LoginModel;
 
 class Login extends BaseController
 {
-    private $login_model;
     public function __construct()
     {
-        $this->login_model = new LoginModel();
+        
     }
     public function index()
     {
@@ -21,9 +20,7 @@ class Login extends BaseController
     }
     public function auth()
     {
-        $user_name = $this->input->post('email');
-        $password = $this->input->post('password');
-        $response = $this->login_model->auth($user_name , $password);
+        return view('dashboard');
     }
 }
 
