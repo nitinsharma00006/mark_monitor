@@ -11,6 +11,9 @@ class Login extends BaseController
     }
     public function index()
     {
+        if(userLoggedIn()){
+            return redirect()->to(base_url('dashboard'));
+        }
         return view('login');
     }
 
@@ -22,7 +25,10 @@ class Login extends BaseController
     {        
         $auth = $this->userModel->auth();
         if($auth != false){
-            
+            setFlashData('message' , $auth , 'error');
+            return redirect()->to(base_url('login'));
+        }else{
+            return redirect()->to(base_url('dashboard'));
         }
     }
 }

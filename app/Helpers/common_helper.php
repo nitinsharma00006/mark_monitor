@@ -29,7 +29,12 @@ function inclusions( $values = array() ) {
 function setFlashData($name , $msg , $type = 'success')
 {
 	$data = "toastr.$type($msg !, ucfirst($type),{timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});";
-	// $this->session->setFlashdata($name , $data);
+	$this->session->setFlashdata($name , $data);
+}
+function getFlashData($name)
+{
+	$data = $this->session->getFlashdata($name);
+	return $data;
 }
 
 ?>
