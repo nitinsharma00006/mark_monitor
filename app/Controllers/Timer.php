@@ -12,5 +12,9 @@ class Timer extends BaseController
     {
         return view('timer/index');
     }
+    public function set_time()
+    {
+        return view('timer/set_timer');
+    }
     
 }

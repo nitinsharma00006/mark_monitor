@@ -57,7 +57,7 @@
                 <div id="collapseSetTime" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Set Time:</h6>
-                        <a class="collapse-item" href="<?= base_url('timer/set-time')?>">Set Time</a>
+                        <a class="collapse-item" href="<?= base_url('timer/set_time')?>">Set Time</a>
                         <a class="collapse-item" href="<?= base_url('timer')?>">View Status</a>
                     </div>
                 </div>
