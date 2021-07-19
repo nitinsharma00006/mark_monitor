@@ -1,13 +1,13 @@
 <?php
 namespace App\Controllers;
 use App\Controllers\BaseController;
-use App\Models\LoginModel;
+use App\Models\UserModel;
 
 class Login extends BaseController
 {
     public function __construct()
     {
-        
+        $this->userModel = new UserModel();
     }
     public function index()
     {
@@ -19,8 +19,11 @@ class Login extends BaseController
         echo "Forget Password";
     }
     public function auth()
-    {
-        return view('dashboard');
+    {        
+        $auth = $this->userModel->auth();
+        if($auth != false){
+            
+        }
     }
 }
 

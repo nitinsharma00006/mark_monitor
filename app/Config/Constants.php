@@ -79,3 +79,18 @@ defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 define('APP_NAME' , "Mark Monitor");
+
+// Table Constants
+define('TABLE_USERS' , 'users');
+
+// API Constants
+
+define("STATUS_SUCCESS" , 'success');
+define("STATUS_ERROR" , 'failed');
+
+define('INVALID_REQUEST', 400);
+define('NOT_FOUND', 404);
+define('UNAUTHORIZED', 403);
+define('SUCCESS', 200);
+define('INTERNAL_SERVER', 500);
+

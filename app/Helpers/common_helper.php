@@ -1,13 +1,4 @@
 <?php
-
-function load_view($view,$data = array())
-{
-    $page['title'] = (array_key_exists('title' , $data)) ? $data['title'] : APP_NAME;
-    $page['includes'] = (array_key_exists('includes' , $data)) ? inclusions($data['includes']) : inclusions();
-    echo view('templates/header' , $page);
-    echo view($view , $data);
-    echo view('templates/footer' , $page);
-}
 // include scripts and css
 function inclusions( $values = array() ) {
 	$options = array(
@@ -33,6 +24,12 @@ function inclusions( $values = array() ) {
 		}
 	}
 	return $output;
+}
+
+function setFlashData($name , $msg , $type = 'success')
+{
+	$data = "toastr.$type($msg !, ucfirst($type),{timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});";
+	// $this->session->setFlashdata($name , $data);
 }
 
 ?>
