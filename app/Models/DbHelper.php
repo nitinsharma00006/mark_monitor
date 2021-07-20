@@ -10,6 +10,8 @@ class DbHelper extends Model
     {
         parent::__construct();
         $this->db = \Config\Database::connect();
+        $this->request = \Config\Services::request();
+        $this->session = \Config\Services::session();
     }
 
     public function select($select, $table, $where = false, $or_where = false, $order_by = FALSE, $limit = FALSE, $offset = FALSE, $or_like = false, $group_by = false)

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models;
-use CodeIgniter\Model;
 
 class UserModel extends DbHelper
 {
+    public function __construct() {
+        parent::__construct();
+    }
     protected $table = 'users';
     protected $primaryKey = 'email';
 
@@ -24,7 +26,12 @@ class UserModel extends DbHelper
         $password = $this->request->getPost('password');
         $user_data = $this->select('*' ,TABLE_USERS,array('email' => $email));
         if($user_data){
-            if(password_verify($password , $user_data['password'])){
+            if(password_verify($password , $user_data[0]['password'])){
+                if($user_data[0]['status'] != "active"){
+                    return "User is InActive";
+                }
+                // Save Data in session
+                $this->session->set($user_data[0]);
                 return false;
             }
             return "Password is incorrect";

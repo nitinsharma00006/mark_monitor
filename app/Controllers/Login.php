@@ -11,7 +11,7 @@ class Login extends BaseController
     }
     public function index()
     {
-        if(userLoggedIn()){
+        if(userLoggedIn($this)){
             return redirect()->to(base_url('dashboard'));
         }
         return view('login');
@@ -19,17 +19,29 @@ class Login extends BaseController
 
     public function forget()
     {
-        echo "Forget Password";
+        if(isset($_POST['submit'])){
+            // check email is exists or not 
+            // $this->userModel
+            echo "check";
+            exit();
+            // send forgetpassword link
+        }
+        return view('forgetPassword');
     }
     public function auth()
     {        
         $auth = $this->userModel->auth();
         if($auth != false){
-            setFlashData('message' , $auth , 'error');
+            setFlashData($this , 'message' , $auth , 'error');
             return redirect()->to(base_url('login'));
         }else{
             return redirect()->to(base_url('dashboard'));
         }
+    }
+    public function logout()
+    {
+        $this->session->destroy();
+        return redirect()->to(base_url('login'));
     }
 }
 

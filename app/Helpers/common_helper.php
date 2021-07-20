@@ -26,15 +26,25 @@ function inclusions( $values = array() ) {
 	return $output;
 }
 
-function setFlashData($name , $msg , $type = 'success')
+function setFlashData($CI , $name , $msg , $type = 'success')
 {
 	$data = "toastr.$type($msg !, ucfirst($type),{timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});";
-	$this->session->setFlashdata($name , $data);
+	$CI->session->setFlashdata($name , $data);
 }
-function getFlashData($name)
+function getFlashData($CI , $name)
 {
-	$data = $this->session->getFlashdata($name);
+	$CI->session = \Config\Services::session();
+	$data = $CI->session->getFlashdata($name);
 	return $data;
+}
+function userLoggedIn($CI , $redirect = '')
+{
+	if ($CI->session->get('id')) {
+		if( !empty($redirect) ) redirect($redirect);
+		return true;
+	} else {
+		return false;
+	}
 }
 
 ?>
