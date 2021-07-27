@@ -17,7 +17,7 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control form-control-user"
                                         id="email" name="email"
-                                        placeholder="Enter Email Address...">
+                                        placeholder="Enter Email Address..." required>
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-primary btn-user btn-block">Reset Password</button>
                             </form>

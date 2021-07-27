@@ -12,6 +12,7 @@ class Login extends BaseController
     public function index()
     {
         if(userLoggedIn($this)){
+            setFlashData($this , 'message' , "Welcome To Mark Monitor" , 'success');
             return redirect()->to(base_url('dashboard'));
         }
         return view('login');
@@ -20,11 +21,16 @@ class Login extends BaseController
     public function forget()
     {
         if(isset($_POST['submit'])){
-            // check email is exists or not 
-            // $this->userModel
-            echo "check";
-            exit();
-            // send forgetpassword link
+            // check email is exists or not
+            $email = $this->request->getPost('email');
+            $check_email = $this->userModel->find($email);
+            if($check_email){
+                // send forgetpassword link
+                // TODO: FIXME:send email to email address
+                setFlashData($this , 'message' , "Link send successfull check email" , 'success');
+            }else{
+                setFlashData($this , 'message' , "Email address not in our system" , 'error');
+            }
         }
         return view('forgetPassword');
     }
@@ -35,6 +41,7 @@ class Login extends BaseController
             setFlashData($this , 'message' , $auth , 'error');
             return redirect()->to(base_url('login'));
         }else{
+            setFlashData($this , 'message' , "Welcome To Mark Monitor" , 'success');
             return redirect()->to(base_url('dashboard'));
         }
     }

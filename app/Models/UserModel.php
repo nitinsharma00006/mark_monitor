@@ -11,6 +11,7 @@ class UserModel extends DbHelper
     protected $primaryKey = 'email';
 
     protected $useAutoIncrement = true;
+    protected $allowedFields = ['id', 'name','email','role' , 'mobile' , 'zone','city','state','pincode','address','gst','status','created_by','created_type','created_at','update_at','deleted_at'];
 
     protected $useSoftDeletes = true;
     protected $returnType = 'array';

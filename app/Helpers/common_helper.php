@@ -28,7 +28,7 @@ function inclusions( $values = array() ) {
 
 function setFlashData($CI , $name , $msg , $type = 'success')
 {
-	$data = "toastr.$type($msg !, ucfirst($type),{timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});";
+	$data = "toastr.$type('$msg !', '". ucfirst($type) ."',{closeButton: true,timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});";
 	$CI->session->setFlashdata($name , $data);
 }
 function getFlashData($CI , $name)

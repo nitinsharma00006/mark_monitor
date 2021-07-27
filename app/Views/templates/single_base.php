@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url('assets/css/sb-admin-2.min.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/toastr.css'); ?>" rel="stylesheet">
 
 </head>
 
@@ -43,6 +44,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo base_url('assets/js/sb-admin-2.min.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/toastr.js');?>"></script>
+    <?= $this->renderSection("script");?>
+    <script>
+        $(document).ready(function(){
+            <?= getFlashData($this , 'message')?>
+        });
+    </script>    
 
 </body>
 

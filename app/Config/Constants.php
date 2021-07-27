@@ -78,7 +78,7 @@ defined('EXIT_DATABASE')       || define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      || define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-define('APP_NAME' , "Mark Monitor");
+define('APP_NAME' , "Marq Monitor");
 
 // Table Constants
 define('TABLE_USERS' , 'users');
