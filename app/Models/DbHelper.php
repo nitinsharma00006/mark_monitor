@@ -35,6 +35,28 @@ class DbHelper extends Model
         $query = $builder->get();
         return $query->getResultArray();
     }
+    public function selectDistinct($select, $table, $where = false, $or_where = false, $order_by = FALSE, $limit = FALSE, $offset = FALSE, $or_like = false, $group_by = false)
+    {
+        $builder = $this->db->table($table);
+        $builder->distinct();
+        $builder->select($select);
+        if ($where)
+            $builder->where($where);
+        if ($or_where)
+            $builder->orWhere($or_where);
+        if ($or_like)
+            $builder->orLike($or_like);
+        if ($order_by)
+            $builder->orderBy($order_by);
+        if ($group_by)
+            $builder->groupBy($group_by);
+        if ($limit)
+            $builder->limit($limit);
+        if ($offset)
+            $builder->offset($offset);
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
     public function insert_row($table, $data = null)
     {
         $builder = $this->db->table($table);

@@ -3,35 +3,28 @@
 <?= $this->section('content')?>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form class="user">
+        <form class="user" method="post" action="<?= base_url('customer/create')?>">
             <div class="row">
                 <div class="form-group col-lg-4">
                     <label>Zone</label>
-                    <select class="form-control" id="zone" name="zone">
+                    <select class="form-control" id="zone" name="zone" onchange="loadState(event)">
                         <option value="">Select Zone</option>
-                        <option value="north">North</option>
-                        <option value="south">South</option>
-                        <option value="east">East</option>
-                        <option value="west">West</option>
+                        <option value="North">North</option>
+                        <option value="South">South</option>
+                        <option value="East">East</option>
+                        <option value="West">West</option>
                     </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label>State</label>
                     <select class="form-control" id="state" name="state">
                         <option value="">Select State</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="haryana">Haryana</option>
-                        <option value="rajisthan">Rajisthan</option>
                     </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label>City</label>
                     <select class="form-control" id="city" name="city">
                         <option value="">Select City</option>
-                        <option value="new_delhi">New Delhi</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="gurugram">Gurgoan</option>
-                        <option value="jaipur">Jaipur</option>
                     </select>
                 </div>
             </div>
@@ -69,4 +62,33 @@
         </form>
     </div>
 </div>
+<?= $this->endSection()?>
+
+<?= $this->section('script') ?>
+<script>
+   var loadState = (event) => {
+       let zone = event.target.value;
+        $.ajax({
+            url : '<?= base_url('filters/loadState')?>/' + zone,
+            type : 'POST',
+            data : {
+                '<?= csrf_token()?>' : '<?= csrf_hash()?>'
+            },
+            success : (response) => {
+                renderState(response)
+            },
+            error : (error)=>{
+                console.log(error.status);
+                toastr.error(error.status,{closeButton: true,timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});
+            }
+
+        });
+    }
+    var renderState = (res) =>{
+        alert(res)
+    }
+    $(document).ready(()=>{
+        
+    })
+</script>
 <?= $this->endSection()?>

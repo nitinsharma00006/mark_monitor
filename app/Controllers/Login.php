@@ -12,7 +12,6 @@ class Login extends BaseController
     public function index()
     {
         if(userLoggedIn($this)){
-            setFlashData($this , 'message' , "Welcome To Mark Monitor" , 'success');
             return redirect()->to(base_url('dashboard'));
         }
         return view('login');

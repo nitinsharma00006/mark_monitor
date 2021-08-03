@@ -82,6 +82,7 @@ define('APP_NAME' , "Marq Monitor");
 
 // Table Constants
 define('TABLE_USERS' , 'users');
+define('TABLE_LOCATION' , 'location_master');
 
 // API Constants
 

@@ -12,8 +12,12 @@ class Dashboard extends BaseController
     public function index()
     {
         if(userLoggedIn($this)){
+            $data = [
+                'page_title'   => 'Dashboard',
+            ];
             setFlashData($this , 'message' , "Welcome To Mark Monitor Dashboard" , 'success');
-            return view('dashboard');
+            return view('dashboard',$data);
+
         }
        return view('login');
     }
