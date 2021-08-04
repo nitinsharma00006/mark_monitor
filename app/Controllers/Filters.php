@@ -17,9 +17,10 @@ class Filters extends BaseController
         }
         die("No direct script allowed");       
     }
-    public function loadCity($state=False,$zone=false){
+    public function loadCity($state=False){
         if($this->request->isAJAX()){
-            $city = $this->filterModel->loadCity($state,$zone);
+            set_json_header();
+            $city = $this->filterModel->loadCity($state);
             die(json_encode($city));
         }
         die("No direct script allowed");       

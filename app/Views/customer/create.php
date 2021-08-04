@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group col-lg-4">
                     <label>State</label>
-                    <select class="form-control" id="state" name="state">
+                    <select class="form-control" id="state" name="state" onchange="loadCity(event)">
                         <option value="">Select State</option>
                     </select>
                 </div>
@@ -66,10 +66,10 @@
 
 <?= $this->section('script') ?>
 <script>
-   var loadState = (event) => {
+   loadState = (event) => {
        let zone = event.target.value;
         $.ajax({
-            url : '<?= base_url('filters/loadState')?>/' + zone,
+            url : `<?=base_url()?>/filters/loadState/${zone}`,
             type : 'POST',
             data : {
                 '<?= csrf_token()?>' : '<?= csrf_hash()?>'
@@ -84,9 +84,41 @@
 
         });
     }
-    var renderState = (res) =>{
-        alert(res)
+    renderState = (res) =>{
+        let option = `<option>Select State</option>`;
+        res.map((key,index)=>{
+            option += `<option value='${key.statename}'>${key.statename}</option>`;
+        });
+        $("#state").html('');
+        $("#city").html(`<option>Select City</option>`);
+        $("#state").html(option);
     }
+
+    loadCity = (event) => {
+        let state = event.target.value;
+        $.ajax({
+            url : `<?= base_url() ?>/filters/loadCity/${state}`,
+            type:'POST',
+            data:{
+                '<?=csrf_token()?>':'<?=csrf_hash()?>'
+            },
+            success : (response)=>{
+                renderCity(response)
+            },
+            error : (error)=>{
+                console.log(error.status);
+                toastr.error(error.status,{closeButton:true,timeOut:6000,showMethod:'slideDown',hideMethod:'slideUp'});
+            }
+        });
+    }
+    renderCity = (res) => {
+        let option = `<option>Select City</option>`;
+        res.map((key,index)=>{
+            option += `<option value="${key.cityname}">${key.cityname}</option>`;
+        });
+        $("#city").html(option);
+    }
+
     $(document).ready(()=>{
         
     })
