@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/toastr.css'); ?>" rel="stylesheet">
+    <link href="<?php echo base_url('assets/css/screen.css'); ?>" rel="stylesheet">
     <!-- Custom styles for this page -->
     <link href="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css')?>" rel="stylesheet">
 
@@ -223,6 +224,7 @@
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/js/demo/datatables-demo.js')?>"></script>
     <script src="<?php echo base_url('assets/js/toastr.js');?>"></script>
+    <script src="<?php echo base_url('assets/js/jquery.validate.js');?>"></script>
     <?= $this->renderSection("script");?>
     <script>
         $(document).ready(function(){
