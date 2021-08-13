@@ -39,7 +39,7 @@
                 </div>
                 <div class="form-group col-lg-4">
                     <label>Customer Mobile</label>
-                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Customer Mobile" required>
+                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="Customer Mobile" maxlength="10" minlength="10" pattern="[0-9]{10}" title="Mobile no. should be number and min/max 10 digits" required>
                 </div>
             </div>
             <div class="row">

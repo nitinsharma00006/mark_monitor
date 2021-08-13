@@ -51,5 +51,14 @@ class UserModel extends DbHelper
         $pincode = $this->request->getPost('pincode');
         $gst = $this->request->getPost('gst');
         $password = $this->request->getPost('password');
+        $insertData = array(
+            'zone' => $zone,
+            'state' => $state,
+            'city'  => $city,
+            'name'  =>'',
+        );
+        if($this->insert_row(TABLE_USERS)){
+            
+        }
     }
 }
