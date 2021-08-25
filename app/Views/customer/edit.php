@@ -9,29 +9,22 @@
                     <label>Zone</label>
                     <select class="form-control" id="zone" name="zone">
                         <option value="">Select Zone</option>
-                        <option value="north">North</option>
-                        <option value="south">South</option>
-                        <option value="east">East</option>
-                        <option value="west">West</option>
+                        <option value="North" <?=$customer_data[0]['zone'] == 'North' ? 'selected':''?>>North</option>
+                        <option value="South" <?=$customer_data[0]['zone'] == 'South' ? 'selected':''?>>South</option>
+                        <option value="East" <?=$customer_data[0]['zone'] == 'East' ? 'selected':''?>>East</option>
+                        <option value="West" <?=$customer_data[0]['zone'] == 'West' ? 'selected':''?>>West</option>
                     </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label>State</label>
                     <select class="form-control" id="state" name="state">
                         <option value="">Select State</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="haryana">Haryana</option>
-                        <option value="rajisthan">Rajisthan</option>
                     </select>
                 </div>
                 <div class="form-group col-lg-4">
                     <label>City</label>
                     <select class="form-control" id="city" name="city">
                         <option value="">Select City</option>
-                        <option value="new_delhi">New Delhi</option>
-                        <option value="delhi">Delhi</option>
-                        <option value="gurugram">Gurgoan</option>
-                        <option value="jaipur">Jaipur</option>
                     </select>
                 </div>
             </div>
@@ -75,4 +68,64 @@
         </form>
     </div>
 </div>
+<?= $this->endSection()?>
+<?= $this->section('script') ?>
+<script>
+   loadState = (event) => {
+       let zone = event.target.value;
+        $.ajax({
+            url : `<?=base_url()?>/filters/loadState/${zone}`,
+            type : 'POST',
+            data : {
+                '<?= csrf_token()?>' : '<?= csrf_hash()?>'
+            },
+            success : (response) => {
+                renderState(response)
+            },
+            error : (error)=>{
+                console.log(error.status);
+                toastr.error(error.status,{closeButton: true,timeOut:6000,showMethod:'slideDown' , hideMethod:'slideUp'});
+            }
+
+        });
+    }
+    renderState = (res) =>{
+        let option = `<option>Select State</option>`;
+        res.map((key,index)=>{
+            option += `<option value='${key.statename}'>${key.statename}</option>`;
+        });
+        $("#state").html('');
+        $("#city").html(`<option>Select City</option>`);
+        $("#state").html(option);
+    }
+
+    loadCity = (event) => {
+        let state = event.target.value;
+        $.ajax({
+            url : `<?= base_url() ?>/filters/loadCity/${state}`,
+            type:'POST',
+            data:{
+                '<?=csrf_token()?>':'<?=csrf_hash()?>'
+            },
+            success : (response)=>{
+                renderCity(response)
+            },
+            error : (error)=>{
+                console.log(error.status);
+                toastr.error(error.status,{closeButton:true,timeOut:6000,showMethod:'slideDown',hideMethod:'slideUp'});
+            }
+        });
+    }
+    renderCity = (res) => {
+        let option = `<option>Select City</option>`;
+        res.map((key,index)=>{
+            option += `<option value="${key.cityname}">${key.cityname}</option>`;
+        });
+        $("#city").html(option);
+    }
+
+    $(document).ready(()=>{
+        $("#create_customer").validate();
+    })
+</script>
 <?= $this->endSection()?>

@@ -60,6 +60,7 @@ class DbHelper extends Model
     public function insert_row($table, $data = null)
     {
         $builder = $this->db->table($table);
+        log_message(3 , json_encode($data));
         if ($builder->insert($data)) {
             return $this->db->insertID();
         }

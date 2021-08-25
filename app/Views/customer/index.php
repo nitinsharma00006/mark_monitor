@@ -31,40 +31,34 @@
                     </tr>
                 </tfoot>
                 <tbody>
+                    <?php 
+                        if(is_array($customer) && count($customer)>0):
+                            $count = 1;
+                            foreach ($customer as $cust) :
+                    ?>
+
                     <tr>
-                        <td>1</td>
+                        <td><?= $count ?></td>
                         <td>
                             <!-- Switch -->
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                                <input type="checkbox" class="custom-control-input" id="customSwitch1" <?= $cust['status'] == 'active' ? 'checked' : ''?>>
                                 <label class="custom-control-label" for="customSwitch1"></label>
                             </div>
                         </td>
-                        <td>North</td>
-                        <td>211111</td>
-                        <td>Excide</td>
-                        <td>admin@exide.com</td>
-                        <td>9999999999</td>
-                        <td><a href="<?= base_url('customer/edit/1')?>" class="btn btn-primary btn-sm"><i
+                        <td><?= $cust['zone'] ?></td>
+                        <td><?= $cust['email'] ?></td>
+                        <td><?= $cust['name'] ?></td>
+                        <td><?= $cust['email'] ?></td>
+                        <td><?= $cust['mobile'] ?></td>
+                        <td><a href="<?= base_url('customer/edit').'/'.cust_encode($cust['id'])?>" class="btn btn-primary btn-sm"><i
                                     class="fas fa-edit"></i></a></td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            <!-- Switch -->
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="customSwitch2">
-                                <label class="custom-control-label" for="customSwitch2"></label>
-                            </div>
-                        </td>
-                        <td>North</td>
-                        <td>211111</td>
-                        <td>Excide</td>
-                        <td>admin@exide.com</td>
-                        <td>9999999999</td>
-                        <td><a href="<?= base_url('customer/edit/1')?>" class="btn btn-primary btn-sm"><i
-                                    class="fas fa-edit"></i></a></td>
-                    </tr>
+                    <?php
+                        $count++;
+                        endforeach;
+                    endif;
+                    ?>
                 </tbody>
             </table>
         </div>

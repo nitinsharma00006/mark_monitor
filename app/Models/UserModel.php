@@ -55,10 +55,22 @@ class UserModel extends DbHelper
             'zone' => $zone,
             'state' => $state,
             'city'  => $city,
-            'name'  =>'',
+            'name'  => $name,
+            'email' => $email,
+            'role'  => 'customer',
+            'mobile' => $mobile,
+            'address' => $address,
+            'pincode' => $pincode,
+            'gst' => $gst,
+            'password' => password_hash($password , PASSWORD_DEFAULT),
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_by' => $this->session->get('name'),
         );
-        if($this->insert_row(TABLE_USERS)){
-            
+        if($this->insert_row(TABLE_USERS , $insertData)){
+            // Mantain logs
+            return true;
+        }else{
+            return "Error in Creating customer";
         }
     }
 }
