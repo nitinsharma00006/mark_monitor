@@ -47,7 +47,7 @@
                             </div>
                         </td>
                         <td><?= $cust['zone'] ?></td>
-                        <td><?= $cust['email'] ?></td>
+                        <td><?= $cust['user_id'] ?></td>
                         <td><?= $cust['name'] ?></td>
                         <td><?= $cust['email'] ?></td>
                         <td><?= $cust['mobile'] ?></td>

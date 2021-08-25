@@ -81,5 +81,22 @@ function cust_decode($string)
 	$string = base64_decode($string);
 	return $string;
 }
+function gen_uniquecode($CI,$code,$column,$table) {	
+	$builder = $CI->db->table($table);
+	$builder->select($column);
+	$builder->like($column, $code, 'after');
+	$builder->orderBy('id', 'desc');
+	$builder->limit('1');
+	$query = $builder->get();
+	if( $query->getNumRows() > 0  ) {
+		$result = $query->getRowArray();
+		$last_no = str_replace($code , '' , $result[$column]);
+		$uniquecode = (int)$last_no + 1;
+		return $code.$uniquecode; 
+	} else { 
+		$uniquecode =  $code.'1001';
+		return $uniquecode;
+	}
+}
 
 ?>

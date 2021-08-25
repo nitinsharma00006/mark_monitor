@@ -21,8 +21,7 @@ class UserModel extends DbHelper
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
 
-    public function auth()
-    {
+    public function auth(){
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
         $user_data = $this->select('*' ,TABLE_USERS,array('email' => $email));
@@ -39,8 +38,7 @@ class UserModel extends DbHelper
         }
         return "User not exists in our system";
     }
-    public function createCustomer()
-    {
+    public function createCustomer(){
         $zone = $this->request->getPost('zone');
         $state = $this->request->getPost('state');
         $city = $this->request->getPost('city');
@@ -51,11 +49,13 @@ class UserModel extends DbHelper
         $pincode = $this->request->getPost('pincode');
         $gst = $this->request->getPost('gst');
         $password = $this->request->getPost('password');
+        $user_id = gen_uniquecode($this,'CUST','user_id',TABLE_USERS);
         $insertData = array(
             'zone' => $zone,
             'state' => $state,
             'city'  => $city,
             'name'  => $name,
+            'user_id' => $user_id,
             'email' => $email,
             'role'  => 'customer',
             'mobile' => $mobile,
@@ -71,6 +71,35 @@ class UserModel extends DbHelper
             return true;
         }else{
             return "Error in Creating customer";
+        }
+    }
+    public function updateCustomer($id)
+    {
+        $zone = $this->request->getPost('zone');
+        $state = $this->request->getPost('state');
+        $city = $this->request->getPost('city');
+        $name = $this->request->getPost('name');
+        $email = $this->request->getPost('email');
+        $mobile = $this->request->getPost('mobile');
+        $address = $this->request->getPost('address');
+        $pincode = $this->request->getPost('pincode');
+        $gst = $this->request->getPost('gst');
+        $updateData = array(
+            'zone' => $zone,
+            'state' => $state,
+            'city'  => $city,
+            'name'  => $name,
+            'email' => $email,
+            'mobile' => $mobile,
+            'address' => $address,
+            'pincode' => $pincode,
+            'gst' => $gst,
+        );
+        if($this->updateRow(TABLE_USERS,$updateData,array('id' => cust_decode($id)))){
+            // Mantain logs
+            return true;
+        }else{
+            return "Error in Update customer";
         }
     }
 }

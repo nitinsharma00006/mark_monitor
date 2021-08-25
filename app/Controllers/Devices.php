@@ -1,16 +1,19 @@
 <?php
 namespace App\Controllers;
 use App\Controllers\BaseController;
+use App\Models\DeviceModel;
 
 class Devices extends BaseController
 {
     public function __construct()
     {
-        
+        $this->device = new DeviceModel();
     }    
     public function index()
     {
-        return view('devices/index');
+        $data['page_title'] = 'Device List';
+        $data['devices'] = $this->device->findAll();
+        return view('devices/index', $data);
     }
 
     public function register()

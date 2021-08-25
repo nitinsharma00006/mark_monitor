@@ -33,6 +33,16 @@ class Customer extends BaseController
     }
     public function edit($id)
     {
+        if(isset($_POST['submit'])){
+            $response = $this->customer_model->updateCustomer($id);
+            if($response){
+                setFlashData($this , 'message' , "Customer Update Successfully" , 'success');
+                return redirect()->to(base_url('customer'));
+            }else{
+                setFlashData($this , 'message' , $response , 'error');
+                return redirect()->to(base_url('customer/edit'));
+            }
+        }
         $data['page_title'] = 'Edit Customer';
         $data['customer_data'] = $this->customer_model->where('id', cust_decode($id))->find();
         return view('customer/edit',$data);
