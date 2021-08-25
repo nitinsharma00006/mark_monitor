@@ -8,7 +8,7 @@ class Customer extends BaseController
 {
     public function __construct()
     {
-        $this->user_model = new UserModel();
+        $this->customer_model = new UserModel();
     }
     public function index()
     {
@@ -17,6 +17,9 @@ class Customer extends BaseController
     }
     public function create()
     {
+        if(isset($_POST['submit'])){
+            $response = $this->customer_model->createCustomer();
+        }
         $data['page_title'] = 'Create Customer';
         return view('customer/create',$data);
     }

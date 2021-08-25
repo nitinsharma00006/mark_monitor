@@ -39,4 +39,26 @@ class UserModel extends DbHelper
         }
         return "User not exists in our system";
     }
+    public function createCustomer()
+    {
+        $zone = $this->request->getPost('zone');
+        $state = $this->request->getPost('state');
+        $city = $this->request->getPost('city');
+        $name = $this->request->getPost('name');
+        $email = $this->request->getPost('email');
+        $mobile = $this->request->getPost('mobile');
+        $address = $this->request->getPost('address');
+        $pincode = $this->request->getPost('pincode');
+        $gst = $this->request->getPost('gst');
+        $password = $this->request->getPost('password');
+        $insertData = array(
+            'zone' => $zone,
+            'state' => $state,
+            'city'  => $city,
+            'name'  =>'',
+        );
+        if($this->insert_row(TABLE_USERS)){
+            
+        }
+    }
 }
