@@ -3,11 +3,11 @@
 <?= $this->section('content')?>
 <div class="card shadow mb-4">
     <div class="card-body">
-        <form class="user" method="post" action="<?= base_url('customer/create')?>">
+        <form class="user" id="customers" method="post" action="<?= base_url('customer/create')?>" onsubmit="event.prevent">
             <div class="row">
                 <div class="form-group col-lg-4">
                     <label>Zone</label>
-                    <select class="form-control" id="zone" name="zone" onchange="loadState(event)">
+                    <select class="form-control" id="zone" name="zone" onchange="loadState(event)" required>
                         <option value="">Select Zone</option>
                         <option value="North">North</option>
                         <option value="South">South</option>
@@ -120,7 +120,16 @@
     }
 
     $(document).ready(()=>{
-        
+        $("form").submit(function(e){
+            e.preventDefault();
+        });
+        $('#customers').validate({
+            rules:{
+                zone: {
+                  required:true
+                }
+            }
+        });
     })
 </script>
 <?= $this->endSection()?>

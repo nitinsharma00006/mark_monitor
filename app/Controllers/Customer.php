@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 use App\Controllers\BaseController;
+use App\Models\UserModel;
 
 class Customer extends BaseController
 {
     public function __construct()
     {
-        
+        $this->user_model = new UserModel();
     }
     public function index()
     {
