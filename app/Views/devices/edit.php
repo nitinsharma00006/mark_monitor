@@ -42,7 +42,7 @@
                 </div>
             </div>
             <center>
-                <button type="submit" class="btn btn-primary">Register Device</button>
+                <button type="submit" class="btn btn-primary">Update Device</button>
             </center>
         </form>
     </div>

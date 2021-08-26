@@ -35,6 +35,7 @@
                         if (is_array($devices) && count($devices) > 0 ):
                             $count = 1;
                             foreach ($devices as $device) :
+                                $customer_meta = json_decode($device['customer_meta']);
                     ?>
                     <tr>
                         <td><?= $count?></td>
@@ -48,8 +49,13 @@
                         <td><?= $device['device_id']?></td>
                         <td><?= $device['device_name']?></td>
                         <td><?= $device['customer_id']?></td>
-                        <td class="nosort"><a href="<?= base_url('devices/edit/1')?>" class="btn btn-primary btn-sm"><i
-                                    class="fas fa-edit"></i></a></td>
+                        <td><?= $customer_meta->customer_name?></td>
+                        <td class="nosort text-center"><a href="<?= base_url('devices/set-time').'/'.cust_encode($device['id'])?>" class="btn btn-primary btn-sm"><i
+                                    class="fas fa-calendar-times"></i></a></td>
+                        <td class="nosort text-center"><a href="<?= base_url('devices/edit').'/'.cust_encode($device['id'])?>" class="btn btn-primary btn-sm"><i
+                        class="fas fa-edit"></i></a></td>
+                        <td class="nosort text-center"><a href="<?= base_url('devices/edit').'/'.cust_encode($device['id'])?>" class="btn btn-primary btn-sm"><i
+                        class="fas fa-fw fa-clock"></i></a></td>
                     </tr>
                     <?php
                         $count++;
